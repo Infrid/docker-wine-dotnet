@@ -20,6 +20,13 @@ ENV WINEARCH $WINE_ARCH
 #    && while pgrep wineserver >/dev/null; do echo "Waiting for wineserver"; sleep 1; done \
 #    && rm -rf $HOME/.cache/winetricks
 
+
+RUN apt-get update && apt-get install xdelta3 curl unzip wget python3-doit --yes
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update \
+    && rm -r aws*
+
 RUN set -x -e; \
     entrypoint wineboot --init; \
     while true; do \
@@ -29,3 +36,4 @@ RUN set -x -e; \
     done; \
     while pgrep wineserver >/dev/null; do echo "Waiting for wineserver"; sleep 1; done; \
     rm -rf $HOME/.cache/winetricks;
+
