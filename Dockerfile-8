@@ -21,7 +21,7 @@ ENV WINEARCH $WINE_ARCH
 #    && rm -rf $HOME/.cache/winetricks
 
 
-RUN apt-get update && apt-get install xdelta3 curl unzip wget python3-doit --yes
+RUN apt-get update && apt-get install xdelta3 curl unzip wget python3-doit nodejs libxml2 libxml2-dev --yes
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
     && unzip awscliv2.zip \
     && ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update \
